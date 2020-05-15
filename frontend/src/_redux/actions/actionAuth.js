@@ -1,6 +1,6 @@
 import { toastr } from 'react-redux-toastr'
 
-import { AUTH_USER, ERROR_AUTH } from '../actions/actionsType';
+import { AUTH_USER, ERROR_AUTH, RESET_DATA } from '../actions/actionsType';
 import { apiCustom } from '../../services/api';
 
 
@@ -49,7 +49,9 @@ export function userRegisterFetch(email, password, history) {
 export function userLogout(history) {
     return (dispatch) => {
         dispatch(logoutUser());
+        dispatch({ type: RESET_DATA })
         localStorage.removeItem('user');
+        localStorage.removeItem('term');
         history.push('/login');
     }
 }
@@ -64,7 +66,7 @@ export function loginUser(token) {
 export function logoutUser() {
     return {
         type: AUTH_USER,
-        token: null
+        token: null,
     }
 };
 

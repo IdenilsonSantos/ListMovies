@@ -7,8 +7,11 @@ import Header from '../../Components/Header';
 
 import { Container } from '../../globalStyle';
 import { CardWrapper, Card, CardContent, ContentWrapper, Title, ReleaseDate, Overview, ActionsInfo, PopularityCount, AddFavorite } from './styles';
+import Pagination from '../../Components/Pagination';
 
 function HomePage({ data }) {
+
+
     return (
         <>
             <Header />
@@ -36,6 +39,9 @@ function HomePage({ data }) {
                         ))
                     ))}
                 </CardWrapper>
+                {data.map(res => (
+                    <Pagination key={res.page} total_pages={res.total_pages} page={res.page} />
+                ))}
             </Container>
         </>
     )

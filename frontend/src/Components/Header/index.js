@@ -17,7 +17,8 @@ function Header({ dispatch }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        dispatch(tmdbFetch(searchTerm));
+        dispatch(tmdbFetch(searchTerm, null));
+        localStorage.setItem('term', searchTerm);
     }
 
     async function handleLogout() {

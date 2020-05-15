@@ -1,0 +1,3 @@
+const TMDB_API_KEY = '15e5903265657b23d38b801f4c57482a';
+
+export default TMDB_API_KEY;

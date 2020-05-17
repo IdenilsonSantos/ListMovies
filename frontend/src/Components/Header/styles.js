@@ -46,6 +46,18 @@ const ButtonSearch = styled.button`
     }
 `;
 
+const Nav = styled.div`
+    width: 50%;
+
+    a {
+        color: #fff;
+    }
+
+    a:hover {
+        color: #ccc;
+    }
+`;
+
 const ButtonLogout = styled.button`
     width: 90px;
     height: 40px;
@@ -64,4 +76,4 @@ const ButtonLogout = styled.button`
     }
 `;
 
-export { HeaderWrapper, HeaderContent, SearchBar, InputSearch, ButtonSearch, ButtonLogout };
+export { HeaderWrapper, HeaderContent, SearchBar, InputSearch, ButtonSearch, Nav, ButtonLogout };

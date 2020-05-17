@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { tmdbFetch } from '../../_redux/actions/actionData';
 import { userLogout } from '../../_redux/actions/actionAuth';
@@ -8,7 +8,7 @@ import { userLogout } from '../../_redux/actions/actionAuth';
 import { MdSearch } from 'react-icons/md'
 
 import { Container } from '../../globalStyle';
-import { HeaderWrapper, HeaderContent, SearchBar, InputSearch, ButtonSearch, ButtonLogout } from './styles';
+import { HeaderWrapper, HeaderContent, SearchBar, InputSearch, ButtonSearch, Nav, ButtonLogout } from './styles';
 
 function Header({ dispatch }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -35,6 +35,9 @@ function Header({ dispatch }) {
                             <MdSearch />
                         </ButtonSearch>
                     </SearchBar>
+                    <Nav>
+                        <Link to="/list">Minha Lista</Link>
+                    </Nav>
                     <ButtonLogout onClick={() => handleLogout()}>Sair</ButtonLogout>
                 </HeaderContent>
             </Container>

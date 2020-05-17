@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 import { format } from 'date-fns';
 import { MdList } from 'react-icons/md';
 
+import { addFavorite } from '../../_redux/actions/actionData';
+
 import Header from '../../Components/Header';
+import Pagination from '../../Components/Pagination';
 
 import { Container } from '../../globalStyle';
 import { CardWrapper, Card, CardContent, ContentWrapper, Title, ReleaseDate, Overview, ActionsInfo, PopularityCount, AddFavorite } from './styles';
-import Pagination from '../../Components/Pagination';
-
-function HomePage({ data }) {
 
 
+function HomePage({ data, dispatch }) {
+
+    async function addToList(data) {
+        dispatch(addFavorite(data));
+    }
     return (
         <>
             <Header />
@@ -30,7 +35,7 @@ function HomePage({ data }) {
                                         <PopularityCount>
                                             {((res.popularity * 100) / 100).toFixed(0)}% votos
                                     </PopularityCount>
-                                        <AddFavorite>
+                                        <AddFavorite onClick={() => addToList(res)}>
                                             <MdList />
                                         </AddFavorite>
                                     </ActionsInfo>
@@ -53,4 +58,11 @@ const mapStateToProps = ({ data }) => {
     }
 }
 
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

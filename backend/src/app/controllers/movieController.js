@@ -5,9 +5,17 @@ module.exports = {
     async listAll(req, res) {
         const userId = req.decoded.id;
 
-        const movie = await Movie.find({ userId });
+        let page;
+        if (req.query.page) {
+            page = req.query.page
+        }
+        else {
+            page = 1
+        }
 
-        if (movie.length) {
+        const movie = await Movie.paginate({ userId }, { page, limit: 10 });
+
+        if (movie.docs.length) {
             res.status(200).json(movie);
         }
         else {
@@ -44,7 +52,7 @@ module.exports = {
 
         const movieExists = await Movie.findOne({ title, userId });
 
-        if (movieExists) {
+        if (!movieExists) {
             const movie = await Movie.create({
                 title, popularity, release_date,
                 overview, genre_ids, poster_path, userId

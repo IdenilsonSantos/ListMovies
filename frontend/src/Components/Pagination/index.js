@@ -19,9 +19,8 @@ function Pagination({ total_pages, page, dispatch }) {
     }
 
     async function handleMakeRequestPage(pageNumber) {
-        console.log(pageNumber)
         const term = localStorage.getItem('term')
-        dispatch(tmdbFetch(term, pageNumber));
+        //dispatch(tmdbFetch(term, pageNumber));
         setCurrentPage(page)
     }
 

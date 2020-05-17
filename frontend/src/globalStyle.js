@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         height: 100vh;
     }
+
+    a {
+        text-decoration: none;
+    }
 `;
 
 const Container = styled.div`

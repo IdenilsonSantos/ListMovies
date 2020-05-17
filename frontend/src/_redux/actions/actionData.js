@@ -1,6 +1,13 @@
 import { FETCH_SUCCESS, FETCH_ERROR } from './actionsType';
-import { apiTmdb } from '../../services/api';
+import { apiTmdb, apiCustom } from '../../services/api';
 import api_key from '../../services/key';
+import { authHeader } from '../../helpers/authHeader';
+import { toastr } from 'react-redux-toastr';
+
+const requestOptions = {
+    method: 'POST',
+    headers: authHeader()
+};
 
 export function tmdbFetch(term, pageNumber) {
     return (dispatch) => {
@@ -10,6 +17,19 @@ export function tmdbFetch(term, pageNumber) {
             }).catch(err => {
                 if (err) {
                     dispatch({ type: FETCH_ERROR });
+                }
+            });
+    }
+}
+
+export function addFavorite(data) {
+    return (dispatch) => {
+        return apiCustom.post('movies', data, requestOptions)
+            .then(res => {
+                toastr.success('Filme adicionado à lista com sucesso.')
+            }).catch(err => {
+                if (err.response.status === 400) {
+                    toastr.error('O filme já existe na sua lista.')
                 }
             });
     }

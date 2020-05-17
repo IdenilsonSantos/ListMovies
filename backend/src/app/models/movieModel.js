@@ -1,4 +1,5 @@
 const { model, Schema } = require('mongoose');
+const paginate = require('mongoose-paginate');
 const bcrypt = require('bcryptjs');
 
 const movieSchema = new Schema({
@@ -32,5 +33,7 @@ const movieSchema = new Schema({
 }, {
     timestamps: true
 });
+
+movieSchema.plugin(paginate);
 
 module.exports = model('Movie', movieSchema);

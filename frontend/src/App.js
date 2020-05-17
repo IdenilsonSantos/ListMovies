@@ -7,6 +7,7 @@ import { GlobalStyle } from './globalStyle';
 import LoginPage from './Pages/Sign/Login';
 import RegisterPage from './Pages/Sign/Register';
 import HomePage from './Pages/HomePage';
+import ListPage from './Pages/ListPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
           <PrivateRoute path="/home" component={HomePage} />
+          <PrivateRoute path="/list" component={ListPage} />
         </Switch>
       </BrowserRouter>
     </>
